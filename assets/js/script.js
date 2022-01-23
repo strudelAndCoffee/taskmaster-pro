@@ -87,11 +87,18 @@ $(".list-group").on("click", "span", function(){
   .addClass("form-control")
   .val(date);
 
+  dateInput.datepicker({
+    minDate: 1,
+    onClose: function() {
+      $(this).trigger("change");
+    }
+  })
+
   $(this).replaceWith(dateInput);
   dateInput.trigger("focus");
 });
 
-$(".list-group").on("blur", "input[type='text']", function(){
+$(".list-group").on("change", "input[type='text']", function(){
   var date = $(this)
   .val()
   .trim();
@@ -219,3 +226,7 @@ $("#trash").droppable({
     console.log("out");
   },
 })
+
+$("#modalDueDate").datepicker({
+  minDate: 1
+});
